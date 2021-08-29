@@ -29,6 +29,7 @@ so ~/.config/nvim/coc_config.vim
 " ===Colorscheme Config===
 set termguicolors
 colorscheme gruvbox
+let g:gruvbox_transparent_bg=1
 " let g:gruvbox_contrast_dark = 'hard'
 
 " ===NerdTree CONFIG===
