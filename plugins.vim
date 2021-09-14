@@ -12,6 +12,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'shaunsingh/moonlight.nvim'
 
 " terminate plugins
 call plug#end()

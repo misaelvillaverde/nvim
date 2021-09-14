@@ -28,7 +28,8 @@ so ~/.config/nvim/coc_config.vim
 
 " ===Colorscheme Config===
 set termguicolors
-colorscheme gruvbox-material
+" colorscheme gruvbox-material
+colorscheme moonlight
 
 " ===NerdTree CONFIG===
 map <C-n> :NERDTreeToggle<CR>
