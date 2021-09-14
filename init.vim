@@ -24,12 +24,10 @@ nnoremap <C-H> <C-W><C-H>
 
 " Load modules
 so ~/.config/nvim/plugins.vim
-so ~/.config/nvim/coc_config.vim
+so ~/.config/nvim/lsp-config.vim
 
 " ===Colorscheme Config===
 set termguicolors
 " colorscheme gruvbox-material
 colorscheme moonlight
 
-" ===NerdTree CONFIG===
-map <C-n> :NERDTreeToggle<CR>
