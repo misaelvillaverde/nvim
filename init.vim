@@ -28,6 +28,5 @@ so ~/.config/nvim/lsp-config.vim
 
 " ===Colorscheme Config===
 set termguicolors
-" colorscheme gruvbox-material
-colorscheme moonlight
+colorscheme gruvbox-material
 
