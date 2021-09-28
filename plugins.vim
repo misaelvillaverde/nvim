@@ -3,17 +3,15 @@ call plug#begin('~/.vim/plugged')
 
 " plugins
 "" THEMES
-"Plug 'morhetz/gruvbox'
-Plug 'sainnhe/gruvbox-material'
-"Plug 'preservim/nerdtree'
-Plug 'lambdalisue/suda.vim'
-" Plug 'sheerun/vim-polyglot'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'shaunsingh/moonlight.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'tpope/vim-fugitive'
+Plug 'sainnhe/gruvbox-material'
+Plug 'lambdalisue/suda.vim'
+Plug 'vim-airline/vim-airline'
 
 " terminate plugins
 call plug#end()
@@ -31,3 +29,8 @@ nnoremap <leader>bf <cmd>lua require('telescope.builtin').file_browser()<cr>
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 let g:completion_matching_strategy_list =  ['exact', 'substring', 'fuzzy']
+
+" Fugitive
+nmap <leader>gh :diffget //3<cr>
+nmap <leader>gu :diffget //2<cr>
+nmap <leader>gs :G<cr>
