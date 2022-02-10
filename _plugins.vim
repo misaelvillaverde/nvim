@@ -12,6 +12,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'sainnhe/gruvbox-material'
 Plug 'lambdalisue/suda.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'jiangmiao/auto-pairs'
 
 " terminate plugins
 call plug#end()
@@ -25,6 +26,12 @@ nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>gb <cmd>lua require('telescope.builtin').git_branches()<cr>
 nnoremap <leader>bf <cmd>lua require('telescope.builtin').file_browser()<cr>
+nnoremap <leader>fz <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
+nnoremap <leader>fs <cmd>lua require('telescope.builtin').builtin()<cr>
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect

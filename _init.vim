@@ -14,6 +14,11 @@ set clipboard=unnamedplus
 set mouse=a
 set signcolumn=yes
 
+set cursorcolumn
+set cursorline
+
+let mapleader = " "
+
 " Split configuration
 set splitbelow
 set splitright
