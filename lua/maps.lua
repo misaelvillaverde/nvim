@@ -11,15 +11,14 @@ map('n', '<C-L>', '<C-W><C-L>', {})
 map('n', '<C-H>', '<C-W><C-H>', {})
 
 -- options
-nnopt = { noremap = true }
-inopt = { inoremap = true }
+local nnopt = { noremap = true }
+local inopt = { inoremap = true }
 
 ------------
 -- Telescope
-tbuilt = "<cmd>lua require('telescope.builtin')." -- don't like this
-tfuncs = {
+local tbuilt = "<cmd>lua require('telescope.builtin')." -- don't like this
+local tfuncs = {
   ff = 'find_files',
-  bf = 'file_browser',
   fg = 'live_grep',
   fb = 'buffers',
   fh = 'help_tags',
@@ -31,8 +30,11 @@ tfuncs = {
 for mapping, func in pairs(tfuncs) do
   map('n', '<leader>' .. mapping, tbuilt .. func .. '()<cr>', nnopt)
 end
+
+-- file_browser :h telescope-file-browser.nvim
+map('n', '<leader>bf', ':Telescope file_browser<cr>', nnopt)
+
 ------------
 -- vim-fugitive
-map('n', '<leader> gs', ':G<cr>', {})
+map('n', '<leader>gs', ':G<cr>', {})
 
--- TODO: completion-nvim mappings

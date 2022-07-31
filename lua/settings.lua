@@ -1,6 +1,14 @@
 local o = vim.o
-local wo = vim.wo
-local bo = vim.bo
+
+-- Require modules configurations
+require('telescope-config')
+require('cmp-config')
+require('treesitter-config')
+require('lsp-config')
+require('null-ls-config')
+
+-- OS theme listener for vim
+-- require('dark_notify').run()
 
 -- global options
 o.clipboard = "unnamedplus"
@@ -8,22 +16,13 @@ o.mouse = "a"
 o.termguicolors = true
 o.splitbelow = true
 o.splitright = true
-o.completeopt = "menuone,noinsert,noselect"
+o.completeopt = "menu,menuone,noselect"
+o.expandtab = true
+o.shiftwidth = 4
+o.softtabstop = 4
+o.syntax = "on"
+o.number = true
+o.relativenumber = true
+o.signcolumn = "yes"
+o.cursorline = true
 
--- window-local options
-wo.number = true
-wo.relativenumber = true
-wo.numberwidth = 2
-wo.signcolumn = "yes"
-wo.cursorcolumn = true
-wo.cursorline = true
-
--- buffer-local options
-bo.expandtab = true
-bo.shiftwidth = 2
-bo.softtabstop = 2
-bo.syntax = "on"
-
--- Require modules configurations
-require('lsp-config')
-require('treesitter-config')
