@@ -11,7 +11,7 @@ map('n', '<C-L>', '<C-W><C-L>', {})
 map('n', '<C-H>', '<C-W><C-H>', {})
 
 -- options
-local nnopt = { noremap = true }
+local nnopt = { noremap = true, silent = true }
 local inopt = { inoremap = true }
 
 ------------
@@ -37,4 +37,8 @@ map('n', '<leader>bf', ':Telescope file_browser<cr>', nnopt)
 ------------
 -- vim-fugitive
 map('n', '<leader>gs', ':G<cr>', {})
+
+------------
+-- trouble.nvim
+map('n', '<leader>xx', ':Trouble<cr>', nnopt)
 

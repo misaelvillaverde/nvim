@@ -35,7 +35,7 @@ local on_attach = function() -- client, bufnr
   map('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   map('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   map('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
 
 end
 
@@ -62,8 +62,8 @@ end
 lspconfig.tsserver.setup {
     on_attach = function(client)
 	on_attach()
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        client.server_capabilities.document_formatting = false
+        client.server_capabilities.document_range_formatting = false
     end,
     capabilities = capabilities,
     flags = {

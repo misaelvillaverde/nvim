@@ -23,11 +23,19 @@ require 'paq' {
     'hrsh7th/vim-vsnip';
     -- git
     'tpope/vim-fugitive';
+    -- diagnostics
+    'folke/trouble.nvim';
+    'kyazdani42/nvim-web-devicons';
 }
 
 require('settings')
 require('maps')
 
+vim.o.background='dark'
+vim.g.gruvbox_contrast_dark='medium'
+vim.g.gruvbox_contrast_light='medium'
 vim.cmd('colorscheme gruvbox')
-vim.cmd('hi Normal ctermbg=NONE guibg=NONE')
+
+-- For background transparency (?)
+--vim.cmd('hi Normal ctermbg=NONE guibg=NONE')
 
