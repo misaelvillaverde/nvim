@@ -1,50 +1,50 @@
+-- Mappings.
 local lspconfig = require('lspconfig')
-local map = vim.api.nvim_set_keymap
 
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
+local opts = { noremap=true, silent=true }
+local map = vim.keymap.set
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function() -- client, bufnr
-  vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = true,
-    signs = true,
-    underline = true,
-    update_in_insert = true,
-  })
-
+local on_attach = function(client, bufnr)
   -- Mappings.
-  local opts = { noremap=true, silent=true }
-
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  --map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  map('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  map('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  map('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  map('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  map('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  map('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  map('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  map('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
-
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  map('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  map('n', 'gd', vim.lsp.buf.definition, bufopts)
+  map('n', 'K', vim.lsp.buf.hover, bufopts)
+  map('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  map('n', '<leader>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  map('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+  map('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+  map('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+  map('n', 'gr', vim.lsp.buf.references, bufopts)
+  map('n', '<leader>fo', function()
+      vim.lsp.buf.format({ async = true })
+  end, bufopts)
+  map('n', '<leader>e', vim.diagnostic.open_float, opts)
+  map('n', '[d', vim.diagnostic.goto_prev, opts)
+  map('n', ']d', vim.diagnostic.goto_next, opts)
+  map('n', '<leader>q', vim.diagnostic.setloclist, opts)
 end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'vimls', 'clangd', 'gopls' }
--- rls
+local servers = {
+    'rust_analyzer',
+    'pyright',
+    'vimls',
+    'ccls',
+    'gopls',
+    'astro'
+} -- clangd, rls
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -60,8 +60,8 @@ end
 --
 -- tsserver
 lspconfig.tsserver.setup {
-    on_attach = function(client)
-	on_attach()
+    on_attach = function(client, bufnr)
+	on_attach(client, bufnr)
         client.server_capabilities.document_formatting = false
         client.server_capabilities.document_range_formatting = false
     end,
@@ -70,7 +70,11 @@ lspconfig.tsserver.setup {
       debounce_text_changes = 150,
     },
 }
+
 -- sumneko_lua
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
 lspconfig.sumneko_lua.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -101,3 +105,5 @@ lspconfig.sumneko_lua.setup {
 	},
 }
 
+-- diagnostic signs
+require('diagnostics')

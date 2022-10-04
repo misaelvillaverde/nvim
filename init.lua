@@ -11,7 +11,10 @@ require 'paq' {
     -- themes
     'sainnhe/gruvbox-material';
     'morhetz/gruvbox';
-    'vim-airline/vim-airline';
+    'pineapplegiant/spaceduck';
+    'ayu-theme/ayu-vim';
+    'catppuccin/nvim';
+    'nvim-lualine/lualine.nvim';
     'cormacrelf/dark-notify';
     -- cmp
     'hrsh7th/cmp-nvim-lsp';
@@ -34,8 +37,10 @@ require('maps')
 vim.o.background='dark'
 vim.g.gruvbox_contrast_dark='medium'
 vim.g.gruvbox_contrast_light='medium'
-vim.cmd('colorscheme gruvbox')
+
+-- vim.g.catppuccin_flavour='mocha' -- latte, frappe, macchiato, mocha
+vim.cmd [[colorscheme gruvbox]]
 
 -- For background transparency (?)
---vim.cmd('hi Normal ctermbg=NONE guibg=NONE')
+vim.cmd [[hi Normal ctermbg=NONE guibg=NONE]]
 

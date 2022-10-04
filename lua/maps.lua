@@ -16,23 +16,34 @@ local inopt = { inoremap = true }
 
 ------------
 -- Telescope
+local deftheme = 'ivy'
 local tbuilt = "<cmd>lua require('telescope.builtin')." -- don't like this
 local tfuncs = {
-  ff = 'find_files',
-  fg = 'live_grep',
-  fb = 'buffers',
-  fh = 'help_tags',
-  gb = 'git_branches',
-  fz = 'current_buffer_fuzzy_find',
-  fs = 'builtin'
+  ff = { 'find_files', deftheme },
+  fg = { 'live_grep', deftheme },
+  fb = { 'buffers', deftheme },
+  fh = { 'help_tags', deftheme },
+  gb = { 'git_branches', deftheme },
+  fz = { 'current_buffer_fuzzy_find', deftheme },
+  fs = { 'builtin', deftheme }
 }
 
 for mapping, func in pairs(tfuncs) do
-  map('n', '<leader>' .. mapping, tbuilt .. func .. '()<cr>', nnopt)
+  map(
+    'n',
+    '<leader>' .. mapping,
+    tbuilt .. func[1] .. '(require("telescope.themes").get_' .. func[2] .. '({}))<cr>',
+    nnopt
+  )
 end
 
 -- file_browser :h telescope-file-browser.nvim
-map('n', '<leader>bf', ':Telescope file_browser<cr>', nnopt)
+map(
+    'n',
+    '<leader>bf',
+    ':Telescope file_browser<cr>',
+    nnopt
+)
 
 ------------
 -- vim-fugitive
