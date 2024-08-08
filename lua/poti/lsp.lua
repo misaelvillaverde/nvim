@@ -1,12 +1,6 @@
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
-  -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
-  --
-  -- In this case, we create a function that lets us more easily define mappings specific
-  -- for LSP related items. It sets the mode, buffer and description for us each time.
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -37,6 +31,12 @@ local on_attach = function(_, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
+  -- Inlay hints
+  vim.lsp.inlay_hint.enable(true)
+  nmap('<leader>ih', function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+  end, "[I]nlay [H]int")
+
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
@@ -47,15 +47,26 @@ local servers = {
   clangd = {
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
   },
-  -- gopls = {},
+
+  gopls = {
+    settings = {
+      gopls = {
+        hints = {
+          parameterNames = true,
+          rangeVariableTypes = true,
+        },
+      }
+    }
+  },
   -- pyright = {},
-  -- rust_analyzer = {},
+  rust_analyzer = {},
 
   lua_ls = {
     settings = {
       Lua = {
         workspace = { checkThirdParty = false },
         telemetry = { enable = false },
+        hint = { enable = true },
       }
     },
   },
@@ -70,6 +81,7 @@ local servers = {
       'javascriptreact',
       'typescript',
       'typescriptreact',
+      'css',
     },
     init_options = {
       userLanguages = {

@@ -9,9 +9,9 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Map for triggering prettier
-vim.keymap.set('n', '<leader>fp', ":w | :!prettier '%' --write<CR><CR>",
-  { silent = true, desc = "[F]ormat with [P]rettier" })
-vim.keymap.set('n', '<leader>ff', ":Format<CR>", { silent = true, desc = "[F]ormat" })
+-- vim.keymap.set('n', '<leader>fp', ":w | :!prettier '%' --write<CR><CR>",
+-- { silent = true, desc = "[F]ormat with [P]rettier" })
+-- vim.keymap.set('n', '<leader>ff', ":Format<CR>", { silent = true, desc = "[F]ormat" })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })

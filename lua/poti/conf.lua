@@ -1,4 +1,4 @@
-vim.cmd.colorscheme 'gruvbox'
+-- vim.cmd.colorscheme 'gruvbox'
 
 vim.o.hlsearch = false
 

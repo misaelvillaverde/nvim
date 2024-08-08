@@ -1,7 +1,7 @@
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
-  defaults = {
+  defaults = require('telescope.themes').get_ivy {
     mappings = {
       i = {
         ['<C-u>'] = false,

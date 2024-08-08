@@ -23,12 +23,6 @@ return {
   },
 
   {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {},
-  },
-
-  {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -91,6 +85,11 @@ return {
         }
       }
     },
+
+    {
+      'sourcegraph/sg.nvim',
+      dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
+    }
   },
 
   -- "gc" to comment visual regions/lines
