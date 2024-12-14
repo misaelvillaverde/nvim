@@ -9,10 +9,20 @@ return {
   },
 
   {
+    'altercation/vim-colors-solarized',
+    priority = 1000,
+    config = function()
+      -- vim.cmd [[ set background=light ]]
+      -- vim.cmd.colorscheme 'solarized'
+    end,
+  },
+
+  {
     'sainnhe/gruvbox-material',
     priority = 1000,
     config = function()
       -- vim.cmd.colorscheme 'gruvbox-material'
+      -- vim.cmd [[ set background=light ]]
     end,
   },
 
@@ -39,7 +49,7 @@ return {
       require('rose-pine').setup({
         styles = { italic = false }
       })
-      vim.cmd.colorscheme 'rose-pine'
+      -- vim.cmd.colorscheme 'rose-pine-dawn'
       --vim.cmd [[ set bg=dark ]]
     end,
   },
@@ -66,7 +76,7 @@ return {
           italic = false,
         },
       })
-      -- vim.cmd.colorscheme 'kanagawa'
+      vim.cmd.colorscheme 'kanagawa'
       -- vim.cmd [[ set background=dark ]]
       --vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
     end,

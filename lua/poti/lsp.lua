@@ -1,5 +1,7 @@
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
+local nvim_lsp = require("lspconfig")
+
 local on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
@@ -61,6 +63,21 @@ local servers = {
   -- pyright = {},
   rust_analyzer = {},
 
+  ts_ls = {
+    init_options = {
+      preferences = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+        importModuleSpecifierPreference = 'non-relative',
+      },
+    },
+  },
+
   lua_ls = {
     settings = {
       Lua = {
@@ -106,7 +123,7 @@ mason_lspconfig.setup {
 
 mason_lspconfig.setup_handlers {
   function(server_name)
-    require('lspconfig')[server_name].setup(vim.tbl_deep_extend("force", {
+    nvim_lsp[server_name].setup(vim.tbl_deep_extend("force", {
       capabilities = capabilities,
       on_attach = on_attach,
     }, servers[server_name] == nil and {} or servers[server_name]))

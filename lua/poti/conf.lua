@@ -43,3 +43,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+vim.filetype.add({
+  extension = {
+    vert = "glsl",
+    frag = "glsl",
+  },
+})

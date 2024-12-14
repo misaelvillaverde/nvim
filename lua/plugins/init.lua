@@ -80,16 +80,16 @@ return {
         lualine_c = {
           {
             'filename',
-            path = 4,
+            path = 3,
           }
         }
       }
     },
 
-    {
-      'sourcegraph/sg.nvim',
-      dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
-    }
+    -- {
+    --   'sourcegraph/sg.nvim',
+    --   dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
+    -- }
   },
 
   -- "gc" to comment visual regions/lines
@@ -132,4 +132,9 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context"
   },
+
+  {
+    'nmac427/guess-indent.nvim',
+    config = function() require('guess-indent').setup {} end,
+  }
 }

@@ -3,9 +3,12 @@
 require('telescope').setup {
   defaults = require('telescope.themes').get_ivy {
     mappings = {
+      n = {
+        ["<c-d>"] = require('telescope.actions').delete_buffer
+      },
       i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
+        ["<C-h>"] = "which_key",
+        ["<c-d>"] = require('telescope.actions').delete_buffer
       },
     },
   },
