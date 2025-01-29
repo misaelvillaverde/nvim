@@ -136,5 +136,10 @@ return {
   {
     'nmac427/guess-indent.nvim',
     config = function() require('guess-indent').setup {} end,
+  },
+
+  {
+    'dmmulroy/ts-error-translator.nvim',
+    config = function() require('ts-error-translator').setup {} end,
   }
 }

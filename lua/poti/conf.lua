@@ -1,4 +1,4 @@
--- vim.cmd.colorscheme 'gruvbox'
+vim.hl = vim.highlight
 
 vim.o.hlsearch = false
 
@@ -42,6 +42,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- [[ Folding ]]
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false -- Start with all folds open
+vim.opt.foldlevel = 99     -- High initial fold level
 
 vim.filetype.add({
   extension = {

@@ -34,7 +34,7 @@ local on_attach = function(_, bufnr)
   end, '[W]orkspace [L]ist Folders')
 
   -- Inlay hints
-  vim.lsp.inlay_hint.enable(true)
+  -- vim.lsp.inlay_hint.enable(true)
   nmap('<leader>ih', function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
   end, "[I]nlay [H]int")
@@ -128,4 +128,9 @@ mason_lspconfig.setup_handlers {
       on_attach = on_attach,
     }, servers[server_name] == nil and {} or servers[server_name]))
   end,
+}
+
+-- external (non-mason)
+nvim_lsp.gleam.setup {
+  cmd = { "glas", "--stdio" }
 }

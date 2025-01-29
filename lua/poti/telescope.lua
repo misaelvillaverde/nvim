@@ -1,14 +1,28 @@
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
+
+-- Harpoon addon
+local harpoon_add_mark = function(prompt_bufnr)
+  local entry = require("telescope.actions.state").get_selected_entry()
+  local list = require("harpoon"):list()
+  local harpoon_config = list.config
+  local item = harpoon_config.create_list_item(harpoon_config, entry[1])
+  list:add(item)
+  print("[Harpoon] Added " .. entry[1] .. " to harpoon")
+end
+
 require('telescope').setup {
   defaults = require('telescope.themes').get_ivy {
     mappings = {
       n = {
-        ["<c-d>"] = require('telescope.actions').delete_buffer
+        ["<C-h>"] = "which_key",
+        ["<c-d>"] = require('telescope.actions').delete_buffer,
+        ["<C-r>"] = harpoon_add_mark
       },
       i = {
         ["<C-h>"] = "which_key",
-        ["<c-d>"] = require('telescope.actions').delete_buffer
+        ["<c-d>"] = require('telescope.actions').delete_buffer,
+        ["<C-r>"] = harpoon_add_mark
       },
     },
   },

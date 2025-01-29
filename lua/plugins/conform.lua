@@ -1,4 +1,4 @@
-local prettierConf = { { "prettierd", "prettier" } }
+local prettierConf = { "prettier" }
 
 return {
   {
@@ -7,7 +7,6 @@ return {
     cmd = { "ConformInfo" },
     keys = {
       {
-        -- Customize or remove this keymap to your liking
         "<leader>ff",
         function()
           require("conform").format({ async = true, lsp_fallback = true })
