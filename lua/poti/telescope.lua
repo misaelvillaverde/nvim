@@ -13,6 +13,19 @@ end
 
 require('telescope').setup {
   defaults = require('telescope.themes').get_ivy {
+    vimgrep_arguments = {
+      -- required options
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+
+      -- custom options
+      "--multiline"
+    },
     mappings = {
       n = {
         ["<C-h>"] = "which_key",

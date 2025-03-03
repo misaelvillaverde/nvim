@@ -99,6 +99,7 @@ local servers = {
       'typescript',
       'typescriptreact',
       'css',
+      'rs',
     },
     init_options = {
       userLanguages = {

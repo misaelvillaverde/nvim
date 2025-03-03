@@ -43,7 +43,7 @@ return {
         styles = { italic = false }
       })
       -- vim.cmd [[ set bg=dark ]]
-      -- vim.cmd.colorscheme 'rose-pine'
+      -- vim.cmd.colorscheme 'rose-pine-dawn'
     end,
   },
   --

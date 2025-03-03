@@ -16,7 +16,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- Zen Reading mode
 local is_reading = false
-vim.keymap.set('n', '<leader>r',
+vim.keymap.set('n', '<leader>zr',
   function()
     require('zen-mode').toggle({ window = { width = .40 } })
     if is_reading then
