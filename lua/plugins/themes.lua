@@ -11,30 +11,26 @@ return {
           operators = false,
           folds = false,
         },
+        contrast = "hard",
       })
       vim.cmd.colorscheme 'gruvbox'
       vim.cmd [[ set bg=dark ]]
     end,
   },
-  --
-  --   {
-  --     'altercation/vim-colors-solarized',
-  --     priority = 1000,
-  --     config = function()
-  --       -- vim.cmd [[ set background=light ]]
-  --       -- vim.cmd.colorscheme 'solarized'
-  --     end,
-  --   },
-  --
-  --   {
-  --     'sainnhe/gruvbox-material',
-  --     priority = 1000,
-  --     config = function()
-  --       -- vim.cmd.colorscheme 'gruvbox-material'
-  --       -- vim.cmd [[ set background=light ]]
-  --     end,
-  --   },
-  --
+  {
+    "zenbones-theme/zenbones.nvim",
+    -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+    -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+    -- In Vim, compat mode is turned on as Lush only works in Neovim.
+    dependencies = "rktjmp/lush.nvim",
+    lazy = false,
+    priority = 1000,
+    -- you can set set configuration options here
+    config = function()
+        -- vim.g.zenbones_darken_comments = 45
+        -- vim.cmd.colorscheme('duckbones')
+    end
+  },
   {
     'rose-pine/neovim',
     priority = 1000,
@@ -43,7 +39,7 @@ return {
         styles = { italic = false }
       })
       -- vim.cmd [[ set bg=dark ]]
-      -- vim.cmd.colorscheme 'rose-pine-dawn'
+      -- vim.cmd.colorscheme 'rose-pine'
     end,
   },
   --
