@@ -122,14 +122,18 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    nvim_lsp[server_name].setup(vim.tbl_deep_extend("force", {
-      capabilities = capabilities,
-      on_attach = on_attach,
-    }, servers[server_name] == nil and {} or servers[server_name]))
-  end,
-}
+-- TODO: move to vim.lsp.config() https://neovim.io/doc/user/lsp.html#vim.lsp.config()
+-- Note
+-- Since the introduction of :h vim.lsp.config in Neovim 0.11, this plugin's feature set has been reduced. Use this plugin if you want to automatically enable installed servers (:h vim.lsp.enable()) or have access to the :LspInstall command.
+
+-- mason_lspconfig.setup_handlers {
+--   function(server_name)
+--     nvim_lsp[server_name].setup(vim.tbl_deep_extend("force", {
+--       capabilities = capabilities,
+--       on_attach = on_attach,
+--     }, servers[server_name] == nil and {} or servers[server_name]))
+--   end,
+-- }
 
 -- external (non-mason)
 nvim_lsp.gleam.setup {
