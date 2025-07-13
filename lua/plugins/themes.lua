@@ -19,16 +19,19 @@ return {
   },
   {
     "zenbones-theme/zenbones.nvim",
-    -- Optionally install Lush. Allows for more configuration or extending the colorscheme
-    -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
-    -- In Vim, compat mode is turned on as Lush only works in Neovim.
     dependencies = "rktjmp/lush.nvim",
     lazy = false,
     priority = 1000,
-    -- you can set set configuration options here
     config = function()
-        -- vim.g.zenbones_darken_comments = 45
-        -- vim.cmd.colorscheme('duckbones')
+      local bones_config = {
+        italic_comments = false,
+        italic_strings = false,
+      }
+      vim.g.duckbones = bones_config
+      vim.g.forestbones = bones_config
+      vim.g.zenbones = bones_config
+      vim.g.vimbones = bones_config
+      -- vim.cmd.colorscheme('vimbones')
     end
   },
   {
@@ -39,7 +42,7 @@ return {
         styles = { italic = false }
       })
       -- vim.cmd [[ set bg=dark ]]
-      -- vim.cmd.colorscheme 'rose-pine'
+      -- vim.cmd.colorscheme 'rose-pine-dawn'
     end,
   },
   --
@@ -67,7 +70,7 @@ return {
       })
       -- vim.cmd.colorscheme 'kanagawa'
       -- vim.cmd [[ set background=dark ]]
-      --vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
+      -- vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
     end,
   },
   --
