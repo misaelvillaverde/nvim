@@ -84,6 +84,12 @@ lspconfig.gleam.setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
+-- Enable LSP folding capabilities
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true
+}
+
 local on_attach = function(args)
   local bufnr = args.buf
   -- local client = vim.lsp.get_client_by_id(args.data.client_id)

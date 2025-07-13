@@ -44,10 +44,52 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- [[ Folding ]]
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false -- Start with all folds open
 vim.opt.foldlevel = 99     -- High initial fold level
+vim.opt.foldlevelstart = 99 -- Start editing with all folds open
+
+-- Dynamic folding setup based on available features
+local function setup_folding()
+  local bufnr = vim.api.nvim_get_current_buf()
+  
+  -- Check if any LSP client supports folding
+  local clients = vim.lsp.get_clients({ bufnr = bufnr })
+  local has_lsp_folding = false
+  
+  for _, client in ipairs(clients) do
+    if client.server_capabilities.foldingRangeProvider then
+      has_lsp_folding = true
+      break
+    end
+  end
+  
+  if has_lsp_folding then
+    -- Use LSP folding
+    vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldexpr = "v:lua.vim.lsp.foldexpr()"
+  elseif require("nvim-treesitter.parsers").has_parser() then
+    -- Use treesitter folding
+    vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+  else
+    -- Fallback to syntax folding
+    vim.opt_local.foldmethod = "syntax"
+  end
+end
+
+-- Set up folding on file type change
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = vim.api.nvim_create_augroup("DynamicFolding", { clear = true }),
+  callback = setup_folding,
+})
+
+-- Re-setup folding when LSP attaches (for better LSP folding detection)
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("DynamicFoldingLSP", { clear = true }),
+  callback = function()
+    vim.defer_fn(setup_folding, 100) -- Small delay to ensure LSP capabilities are ready
+  end,
+})
 
 vim.filetype.add({
   extension = {
