@@ -35,6 +35,12 @@ vim.keymap.set('n', '<leader>Z', function()
   end
 end, { desc = 'Toggle all folds' })
 
+-- Copy path with column and row number
+vim.keymap.set('n', '<leader>cp', function()
+  local path = vim.fn.expand('%:p') .. ':' .. vim.fn.line('.') .. ':' .. vim.fn.col('.')
+  vim.fn.setreg('+', path)
+end)
+
 -- Zen Reading mode
 -- local is_reading = false
 -- vim.keymap.set('n', '<leader>zr',

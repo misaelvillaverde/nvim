@@ -13,8 +13,8 @@ return {
         },
         contrast = "hard",
       })
-      vim.cmd.colorscheme 'gruvbox'
-      vim.cmd [[ set bg=dark ]]
+      -- vim.cmd.colorscheme 'retrobox'
+      -- vim.cmd [[ set bg=dark ]]
     end,
   },
   {
@@ -31,7 +31,8 @@ return {
       vim.g.forestbones = bones_config
       vim.g.zenbones = bones_config
       vim.g.vimbones = bones_config
-      -- vim.cmd.colorscheme('vimbones')
+      vim.cmd.colorscheme('duckbones')
+      -- vim.cmd [[ set background=dark ]]
     end
   },
   {
@@ -41,8 +42,8 @@ return {
       require('rose-pine').setup({
         styles = { italic = false }
       })
-      -- vim.cmd [[ set bg=dark ]]
-      -- vim.cmd.colorscheme 'rose-pine-dawn'
+      vim.cmd [[ set bg=dark ]]
+      vim.cmd.colorscheme 'rose-pine-dawn'
     end,
   },
   --
@@ -71,6 +72,24 @@ return {
       -- vim.cmd.colorscheme 'kanagawa'
       -- vim.cmd [[ set background=dark ]]
       -- vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
+    end,
+  },
+  {
+    'misaelvillaverde/autumn-night.nvim',
+    dependencies = 'rktjmp/lush.nvim',
+    priority = 1000,
+    config = function()
+      -- vim.cmd.colorscheme 'autumn_night'
+      -- vim.cmd [[ set background=dark ]]
+    end,
+  },
+  {
+    'misaelvillaverde/acme.nvim',
+    dependencies = 'rktjmp/lush.nvim',
+    priority = 1000,
+    config = function()
+      -- vim.cmd.colorscheme 'acme'
+      -- vim.cmd [[ set background=light ]]
     end,
   },
   --
